@@ -4,6 +4,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+    
 jobs:
   lint_python:
     name: Lint Python Files
@@ -30,19 +31,23 @@ jobs:
   lint_js:
     name: Lint JavaScript Files
     runs-on: ubuntu-latest
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
     - name: Install Node.js
+    
       uses: actions/setup-node@v3
       with:
         node-version: 14
         
     - name: Install JSHint
+    
       run: npm install -g jshint
       
     - name: Run Linter
+    
       run: |
         find . -name "*.js" -exec jshint {} +
         echo "Linted all the JavaScript files successfully"
